@@ -1,0 +1,283 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  outline: none;
+
+  font-family: 'Inter', 'Arial', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style-type: none;
+}
+
+body {
+  background-color: #E7F6FF;
+}
+
+.title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 39px;
+  color: #000000;
+}
+
+.wrapper {
+  margin: 85px auto;
+
+  max-width: 1080px;
+  width: 100%;
+
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
+  background-color: #FFFFFF;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 45px 55px;
+
+  border-bottom: 1px solid #EAEAEA;
+
+  .headerLeft {
+    display: flex;
+    align-items: center;
+
+    .headerLogo {
+      width: 40px;
+      height: 40px;
+      fill: #000000;
+
+      margin-right: 15px;
+    }
+
+    .headerInfo {
+
+      h3 {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24px;
+        text-transform: uppercase;
+        color: #000000;
+      }
+
+      p {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        color: #9D9D9D;
+      }
+
+    }
+
+  }
+
+  .headerRight {
+    display: flex;
+    gap: 30px;
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .headerCart {
+
+      .headerCartCount {
+        margin-left: 10px;
+
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 17px;
+        color: #5C5C5C;
+      }
+
+    }
+
+  }
+
+  .headerIcon {
+    width: 20px;
+    height: 20px;
+    fill: none;
+  }
+
+}
+
+.content {
+  padding: 45px 55px;
+
+  .contentHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .contentSearch {
+      display: flex;
+      align-items: center;
+
+      width: 250px;
+      height: 45px;
+
+      padding: 0 15px;
+
+      border: 1px solid #F3F3F3;
+      border-radius: 10px;
+
+      svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      input {
+        margin-left: 15px;
+
+        border: none;
+
+        font-style: normal;
+        line-height: 17px;
+        color: #5C5C5C;
+
+        &::placeholder {
+          color: #C4C4C4;
+        }
+
+      }
+    }
+  }
+
+  .sneakers {
+    margin: 40px 0;
+
+    display: flex;
+    gap: 40px;
+
+    .card {
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+
+      width: calc((100% / 4) - 30px);
+
+      padding: 20px;
+
+      background: #FFFFFF;
+      border: 1px solid #F3F3F3;
+      border-radius: 40px;
+
+      transition: all .5s ease;
+
+      &:hover {
+        border: 1px solid #F3F3F3;
+        box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
+
+        transform: translateY(-10px);
+      }
+
+      .cardAddToFavorite {
+        position: absolute;
+        left: 30px;
+        top: 30px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 32px;
+        height: 32px;
+
+        background: #FFFFFF;
+        border: 1px solid #F3F3F3;
+        border-radius: 7px;
+
+        cursor: pointer;
+
+        svg {
+          width: 15px;
+          fill: none;
+        }
+
+      }
+
+      .cardImg {
+        width: 133px;
+        height: auto;
+      }
+
+      .cardTitle {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        color: #000000;
+      }
+
+      .cardInfo {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        width: 100%;
+
+        .cardPrice {
+
+          p {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 11px;
+            line-height: 13px;
+            text-transform: uppercase;
+            color: #BDBDBD;
+          }
+
+          b {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 17px;
+            color: #000000;
+          }
+        }
+
+        .cardAddToCart {
+          width: 32px;
+          height: 32px;
+
+          background: #FFFFFF;
+          border: 1px solid #F3F3F3;
+          border-radius: 8px;
+
+          cursor: pointer;
+
+          svg {
+            width: 11px;
+            height: 11px;
+            fill: none;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
