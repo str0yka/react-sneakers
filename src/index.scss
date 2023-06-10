@@ -40,6 +40,18 @@ body {
   color: #000000;
 }
 
+.uiButton {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #F2F2F2;
+  border-radius: 8px;
+}
+
 .wrapper {
   margin: 85px auto;
 
@@ -202,14 +214,78 @@ body {
           border-bottom: 2px dashed rgba(0, 0, 0, .1);
         }
 
+        .cartButton {
+          width: 100%;
+          margin-top: 30px;
+
+          svg {
+            right: 15%;
+            transition: right 0.2s ease-in-out;
+          }
+
+          &:hover {
+            svg {
+              right: 14%;
+            }
+          }
+
+        }
+
       }
 
     }
 
-    .cartConfirmOrder {
-      position: relative;
+    .cartEmpty {
+      margin: 0 auto;
 
-      margin-top: 30px;
+      width: 285px;
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      text-align: center;
+
+      h4 {
+        margin-top: 20px;
+
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 27px;
+        color: #000000;
+      }
+
+      p {
+        margin: 10px 0 40px;
+
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+      }
+
+      .cartButton {
+        width: 235px;
+
+        svg {
+          left: 10%;
+
+          transform: translateY(-50%) rotate(180deg);
+          transition: left 0.2s ease-in-out;
+        }
+
+        &:hover {
+          svg {
+            left: 9%;
+          }
+        }
+      }
+    }
+
+    .cartButton {
+      position: relative;
 
       padding: 15px 0;
 
@@ -226,22 +302,15 @@ body {
       svg {
         position: absolute;
         top: 50%;
-        right: 15%;
 
-        width: 16px;
-        height: 16px;
+        width: 13px;
+        height: 13px;
 
         transform: translateY(-50%);
-
-        transition: right 0.2s ease-in-out;
       }
 
       &:hover {
         background: lighten(#9DD558, 3%);
-
-        svg {
-          right: 14%;
-        }
       }
 
       &:active {
@@ -306,11 +375,10 @@ body {
       display: flex;
       align-items: center;
       justify-content: center;
-
-      cursor: pointer;
     }
 
     .headerCart {
+      cursor: pointer;
 
       .headerCartCount {
         margin-left: 10px;
@@ -343,6 +411,8 @@ body {
     justify-content: space-between;
 
     .searchBlock {
+      position: relative;
+
       display: flex;
       align-items: center;
 
@@ -359,7 +429,7 @@ body {
       }
 
       input {
-        margin-left: 15px;
+        margin: 0 15px;
 
         border: none;
 
@@ -371,6 +441,67 @@ body {
           color: #C4C4C4;
         }
 
+      }
+
+      .searchClear {
+        position: absolute;
+        right: 15px;
+
+        padding: 10px;
+
+        border: none;
+        background: none;
+
+        &::after,
+        &::before {
+          content: '';
+
+          position: absolute;
+
+          width: 10px;
+          height: 1px;
+
+          background-color: #C4C4C4;
+        }
+
+        &::after {
+          transform: rotate(45deg);
+        }
+
+        &::before {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+
+    &.favorites {
+      justify-content: flex-start;
+      gap: 20px;
+
+      .uiButton {
+        transition: all .2s ease;
+
+        svg {
+          fill: none;
+          width: 12px;
+          height: 12px;
+
+          path {
+            stroke: #D3D3D3;
+            transition: stroke .2s ease;
+          }
+        }
+
+        &:hover {
+
+          border: 1px solid #9D9D9D;
+
+          svg {
+            path {
+              stroke: #9D9D9D;
+            }
+          }
+        }
       }
     }
   }

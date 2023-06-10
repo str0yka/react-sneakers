@@ -1,20 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import classes from "./Card.module.scss";
 
-const Index = ({card, onAddToCart, onAddToFavorite}) => {
-  console.log('Card is rendered')
-  const [isOnFavorite, setIsOnFavorite] = useState(false)
-
-  const handleOnFavorite = () => {
-    setIsOnFavorite(prev => !prev)
-    onAddToFavorite()
-  }
+const Index = ({card, onAddToCart, productsInFavorites, onAddToFavorite, onRemoveFromFavorite, onRemoveFromCart, productsInCart}) => {
+  const isOnCart = productsInCart.find(product => product.id === card.id)
+  const isOnFavorite = productsInFavorites.find(product => product.id === card.id)
 
   return (
     <article className={classes.card}>
       <button
         className={isOnFavorite ? [classes.btnAddToFavorite, classes.active].join(' ') : classes.btnAddToFavorite}
-        onClick={handleOnFavorite}
+        onClick={isOnFavorite ? onRemoveFromFavorite : onAddToFavorite}
       >
         <span className="visually-hidden">
           {isOnFavorite ? 'remove from favorite' : 'add to favorite'}
@@ -30,11 +25,11 @@ const Index = ({card, onAddToCart, onAddToFavorite}) => {
         </div>
 
         <button
-          className={card.isOnCart ? [classes.btnAddToCart, classes.active].join(' ') : classes.btnAddToCart}
-          onClick={onAddToCart}
+          className={isOnCart ? [classes.btnAddToCart, classes.active].join(' ') : classes.btnAddToCart}
+          onClick={isOnCart ? onRemoveFromCart : onAddToCart}
         >
           <span className="visually-hidden">
-            {card.isOnCart ? 'remove from cart' : 'add to cart'}
+            {isOnCart ? 'remove from cart' : 'add to cart'}
           </span>
         </button>
       </div>
