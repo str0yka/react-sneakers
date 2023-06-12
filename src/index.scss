@@ -52,6 +52,79 @@ body {
   border-radius: 8px;
 }
 
+.infoBlock {
+  margin: 0 auto;
+
+  width: 285px;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  text-align: center;
+
+  h4 {
+    margin-top: 20px;
+
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000000;
+  }
+
+  p {
+    margin: 10px 0 40px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .infoButton {
+    position: relative;
+    width: 235px;
+
+    padding: 15px 0;
+
+    color: #FFFFFF;
+    background-color: #9DD558;
+    border: none;
+    border-radius: 18px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    svg {
+      position: absolute;
+      left: 10%;
+      top: 50%;
+
+      width: 13px;
+      height: 13px;
+
+      transform: translateY(-50%) rotate(180deg);
+
+      transition: left 0.2s ease-in-out;
+    }
+
+    &:hover {
+      background: lighten(#9DD558, 3%);
+      svg {
+        left: 9%;
+      }
+    }
+
+    &:active {
+      background: darken(#9DD558, 3%);
+    }
+  }
+}
+
 .wrapper {
   margin: 85px auto;
 
@@ -229,59 +302,14 @@ body {
             }
           }
 
-        }
-
-      }
-
-    }
-
-    .cartEmpty {
-      margin: 0 auto;
-
-      width: 285px;
-      height: 100%;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-
-      text-align: center;
-
-      h4 {
-        margin-top: 20px;
-
-        font-weight: 600;
-        font-size: 22px;
-        line-height: 27px;
-        color: #000000;
-      }
-
-      p {
-        margin: 10px 0 40px;
-
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
-      }
-
-      .cartButton {
-        width: 235px;
-
-        svg {
-          left: 10%;
-
-          transform: translateY(-50%) rotate(180deg);
-          transition: left 0.2s ease-in-out;
-        }
-
-        &:hover {
-          svg {
-            left: 9%;
+          &:disabled {
+            animation: button-loading 1s ease infinite;
           }
+
         }
+
       }
+
     }
 
     .cartButton {
@@ -315,6 +343,11 @@ body {
 
       &:active {
         background: darken(#9DD558, 3%);
+      }
+
+      &:disabled {
+        background: #BDBDBD;
+        cursor: default;
       }
 
     }
@@ -515,4 +548,18 @@ body {
 
   }
 
+}
+
+@keyframes button-loading {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
