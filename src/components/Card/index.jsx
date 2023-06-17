@@ -3,11 +3,17 @@ import classes from "./Card.module.scss";
 import ContentLoader from "react-content-loader";
 import {AppContext} from "../../context/AppContext";
 
-const Index = ({card}) => {
-  const {productsInCart, productsInFavorites, isLoading, handleProduct} = useContext(AppContext)
+const Index = ({card, productsInCart, productsInFavorites}) => {
+  const {isLoading, handleProduct} = useContext(AppContext)
 
-  const isOnCart = isLoading ? null : productsInCart.some(product => product.id === card.id)
-  const isOnFavorite = isLoading ? null : productsInFavorites.some(product => product.id === card.id)
+  const checkActions = products => {
+    if (!products) return false
+
+    return isLoading ? null : products.some(product => product.id === card.id)
+  }
+
+  const isOnCart = checkActions(productsInCart)
+  const isOnFavorite = checkActions(productsInFavorites)
 
   return (
     <article className={classes.card}>
@@ -29,14 +35,16 @@ const Index = ({card}) => {
         </ContentLoader>
         :
         <>
-          <button
-            className={isOnFavorite ? [classes.btnAddToFavorite, classes.active].join(' ') : classes.btnAddToFavorite}
-            onClick={() => isOnFavorite ? handleProduct.onRemoveFromFavorite(card) : handleProduct.onAddToFavorite(card)}
-          >
+          {productsInFavorites &&
+            <button
+              className={isOnFavorite ? [classes.btnAddToFavorite, classes.active].join(' ') : classes.btnAddToFavorite}
+              onClick={() => isOnFavorite ? handleProduct.onRemoveFromFavorite(card) : handleProduct.onAddToFavorite(card)}
+            >
             <span className="visually-hidden">
               {isOnFavorite ? 'remove from favorite' : 'add to favorite'}
             </span>
-          </button>
+            </button>
+          }
 
           <img className={classes.cardImg} src={card.imageUrl} alt="sneaker" draggable='false'/>
           <h4 className={classes.cardTitle}>{card.title}</h4>
@@ -46,14 +54,16 @@ const Index = ({card}) => {
               <b>{card.price} руб.</b>
             </div>
 
-            <button
-              className={isOnCart ? [classes.btnAddToCart, classes.active].join(' ') : classes.btnAddToCart}
-              onClick={() => isOnCart ? handleProduct.onRemoveFromCart(card) : handleProduct.onAddToCart(card)}
-            >
+            {productsInCart &&
+              <button
+                className={isOnCart ? [classes.btnAddToCart, classes.active].join(' ') : classes.btnAddToCart}
+                onClick={() => isOnCart ? handleProduct.onRemoveFromCart(card) : handleProduct.onAddToCart(card)}
+              >
               <span className="visually-hidden">
                 {isOnCart ? 'remove from cart' : 'add to cart'}
               </span>
-            </button>
+              </button>
+            }
           </div>
         </>
       }

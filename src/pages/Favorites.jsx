@@ -28,7 +28,6 @@ const Favorites = () => {
                 card={card}
                 productsInCart={productsInCart}
                 productsInFavorites={productsInFavorites}
-                handleProduct={handleProduct}
               />
             )
           :

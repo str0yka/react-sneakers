@@ -4,8 +4,8 @@ import Card from "../components/Card";
 import {AppContext} from "../context/AppContext";
 import Info from "../components/Info";
 
-const Favorites = () => {
-  const {productsConfirmed, productsInCart, productsInFavorites, handleProduct} = useContext(AppContext)
+const Orders = () => {
+  const {productsConfirmed} = useContext(AppContext)
 
   return (
     <>
@@ -26,9 +26,6 @@ const Favorites = () => {
               <Card
                 key={card.id}
                 card={card}
-                productsInCart={productsInCart}
-                productsInFavorites={productsInFavorites}
-                handleProduct={handleProduct}
               />
             )
           :
@@ -43,4 +40,4 @@ const Favorites = () => {
   );
 };
 
-export default Favorites;
+export default Orders;

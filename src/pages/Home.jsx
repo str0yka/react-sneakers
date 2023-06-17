@@ -4,7 +4,7 @@ import useSearchProducts from "../hooks/useSearchProducts";
 import {AppContext} from "../context/AppContext";
 
 const Home = () => {
-  const {products, isLoading} = useContext(AppContext)
+  const {products, productsInCart, productsInFavorites, isLoading} = useContext(AppContext)
   const [query, setQuery] = useState('')
   const searchedProducts = useSearchProducts(products, query)
 
@@ -39,6 +39,8 @@ const Home = () => {
             <Card
               key={isLoading ? index : card.id}
               card={card}
+              productsInCart={productsInCart}
+              productsInFavorites={productsInFavorites}
             />
           )
         }

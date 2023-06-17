@@ -1,0 +1,249 @@
+.cartWrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .5);
+
+  z-index: 1;
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: opacity .2s ease, visibility .2s ease;
+
+  &.cartWrapperVisible {
+    visibility: visible;
+    opacity: 1;
+
+    .cart {
+      right: 0;
+    }
+  }
+
+  .cancelIcon {
+    width: 32px;
+    height: 32px;
+    left: 1168px;
+    top: 135px;
+
+    background: #FFFFFF;
+    border: 1px solid #D3D3D3;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: all .2s ease-in-out;
+
+    svg {
+      width: 11px;
+      height: 11px;
+      fill: #D3D3D3;
+      transform: rotate(45deg);
+
+      transition: all .2s ease-in-out;
+    }
+
+    &:hover {
+      border-color: #9D9D9D;
+
+      svg {
+        fill: #9D9D9D;
+        transform: rotate(135deg);
+      }
+
+    }
+
+  }
+
+  .cartHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cart {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    max-width: 420px;
+    width: 100%;
+
+    padding: 30px;
+
+    background-color: #FFFFFF;
+    box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+
+    transition: right .4s ease;
+
+    .cartTitle {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 29px;
+      color: #000000;
+    }
+
+    .cartList {
+      flex: 1;
+      margin-top: 30px;
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      .cartItem {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+
+        margin-top: 30px;
+        padding: 20px;
+
+        border: 1px solid #F3F3F3;
+        border-radius: 20px;
+
+        &:first-child {
+          margin-top: 0;
+        }
+
+        img {
+          width: 70px;
+          height: 70px;
+          object-fit: contain;
+        }
+
+        .cartItemInfo {
+          width: 50%;
+
+          h4 {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+            color: #000000;
+          }
+
+          b {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 17px;
+            color: #000000;
+          }
+
+        }
+
+      }
+
+    }
+
+    .cartTotalBlock {
+
+      li {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 7px;
+
+        margin-top: 20px;
+
+        div {
+          position: relative;
+          top: -4px;
+          flex: 1;
+
+          border-bottom: 2px dashed rgba(0, 0, 0, .1);
+        }
+
+        .cartButton {
+          width: 100%;
+          margin-top: 30px;
+
+          svg {
+            right: 15%;
+            transition: right 0.2s ease-in-out;
+          }
+
+          &:hover {
+            svg {
+              right: 14%;
+            }
+          }
+
+          &:disabled {
+            animation: button-loading 1s ease infinite;
+          }
+
+        }
+
+      }
+
+    }
+
+    .cartButton {
+      position: relative;
+
+      padding: 15px 0;
+
+      color: #FFFFFF;
+      background-color: #9DD558;
+      border: none;
+      border-radius: 18px;
+
+      font-size: 16px;
+      font-weight: bold;
+
+      cursor: pointer;
+
+      svg {
+        position: absolute;
+        top: 50%;
+
+        width: 13px;
+        height: 13px;
+
+        transform: translateY(-50%);
+      }
+
+      &:hover {
+        background: lighten(#9DD558, 3%);
+      }
+
+      &:active {
+        background: darken(#9DD558, 3%);
+      }
+
+      &:disabled {
+        background: #BDBDBD;
+        cursor: default;
+      }
+
+    }
+
+  }
+
+}
+
+@keyframes button-loading {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

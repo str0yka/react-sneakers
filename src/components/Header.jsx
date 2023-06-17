@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Link} from "react-router-dom";
+import getTotalPrice from "../utilits/getTotalPrice";
+import {AppContext} from "../context/AppContext";
 
 const Header = ({onClickCart}) => {
-  const totalCost = 0
+  const {productsInCart} = useContext(AppContext)
+  const totalCost = getTotalPrice(productsInCart)
 
   return (
     <header className='header'>

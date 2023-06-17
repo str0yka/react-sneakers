@@ -1,5 +1,5 @@
 import Header from "./components/Header";
-import Cart from "./components/Cart";
+import Cart from "./components/Cart/Cart";
 import Home from "./pages/Home";
 
 import useFetch from "./hooks/useFetch";
@@ -10,7 +10,7 @@ import axios from "axios";
 import {Route, Routes} from "react-router-dom";
 import Favorites from "./pages/Favorites";
 import ProductService from "./utilits/ProductService";
-import User from "./pages/User";
+import User from "./pages/Orders";
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false)
@@ -53,11 +53,12 @@ function App() {
         handleProduct,
         isLoading,
         isError,
+        isCartOpen,
         setIsCartOpen
     }}
     >
       <div className="wrapper">
-        { isCartOpen && <Cart onClose={ () => setIsCartOpen(false) }/> }
+        <Cart onClose={ () => setIsCartOpen(false) }/>
         <Header onClickCart={() => setIsCartOpen(true)}/>
         <main className="content">
           <Routes>

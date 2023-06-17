@@ -1,20 +1,25 @@
 import React, {useContext, useState} from 'react';
-import {AppContext} from "../context/AppContext";
-import Info from "./Info";
 import axios from "axios";
 
+import {AppContext} from "../../context/AppContext";
+import Info from "../Info";
+import getTotalPrice from "../../utilits/getTotalPrice";
+
+import classes from "./Cart.module.scss";
+
 const Cart = ({onClose}) => {
-  const {productsInCart, setProductsInCart, setProductsConfirmed, handleProduct} = useContext(AppContext)
+  const {productsInCart, setProductsInCart, setProductsConfirmed, handleProduct, isCartOpen} = useContext(AppContext)
 
   const [isConfirmed, setIsConfirmed] = useState(false)
   const [orderId, setOrderId] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const totalCost = getTotalPrice(productsInCart)
 
   const confirmOrder = async () => {
     try {
       setIsLoading(true)
 
-      const {data } = await axios.post('https://6481f92529fa1c5c50326621.mockapi.io/confirmedOrders', {
+      const { data } = await axios.post('https://6481f92529fa1c5c50326621.mockapi.io/confirmedOrders', {
         items: productsInCart
       })
 
@@ -43,12 +48,12 @@ const Cart = ({onClose}) => {
   }
 
   return (
-    <aside className="cartWrapper" onClick={onClose}>
-      <div className="cart" onClick={event => event.stopPropagation()}>
-        <div className="cartHeader">
-          <h3 className="cartTitle">Корзина</h3>
+    <aside className={`${classes.cartWrapper} ${isCartOpen && classes.cartWrapperVisible}`} onClick={onClose}>
+      <div className={classes.cart} onClick={event => event.stopPropagation()}>
+        <div className={classes.cartHeader}>
+          <h3 className={classes.cartTitle}>Корзина</h3>
           <button
-            className="cancelIcon"
+            className={classes.cancelIcon}
             onClick={onClose}
           >
             <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
@@ -60,17 +65,17 @@ const Cart = ({onClose}) => {
         {productsInCart.length
           ?
           <>
-            <section className="cartList">
+            <section className={classes.cartList}>
 
               {productsInCart.map(product =>
-                <article className="cartItem" key={product.id}>
+                <article className={classes.cartItem} key={product.id}>
                   <img src={product.imageUrl} alt="sneaker"/>
-                  <div className="cartItemInfo">
+                  <div className={classes.cartItemInfo}>
                     <h4>{product.title}</h4>
                     <b>{product.price} руб.</b>
                   </div>
                   <button
-                    className="cancelIcon"
+                    className={classes.cancelIcon}
                     onClick={() => handleProduct.onRemoveFromCart(product)}
                   >
                     <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
@@ -81,20 +86,20 @@ const Cart = ({onClose}) => {
               )}
             </section>
 
-            <ul className='cartTotalBlock'>
+            <ul className={classes.cartTotalBlock}>
               <li>
                 <span>Итого</span>
                 <div></div>
-                <b>21 498 руб.</b>
+                <b>{totalCost} руб.</b>
               </li>
               <li>
                 <span>Налог 5%</span>
                 <div></div>
-                <b>1074 руб.</b>
+                <b>{Math.ceil(totalCost * 0.05 * 100) / 100} руб.</b>
               </li>
               <li>
                 <button
-                  className="cartButton"
+                  className={classes.cartButton}
                   onClick={confirmOrder}
                   disabled={isLoading}
                 >
