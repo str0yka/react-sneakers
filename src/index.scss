@@ -186,7 +186,6 @@ body {
 
     li {
       display: flex;
-      align-items: center;
       justify-content: center;
     }
 
@@ -328,4 +327,26 @@ body {
 
   }
 
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 20px 0;
+  }
+
+  .content {
+    padding: 20px;
+
+    .contentHeader {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sneakers {
+      margin: 20px 0;
+    }
+  }
 }
